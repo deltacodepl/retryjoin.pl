@@ -8,7 +8,7 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import Hero from './Hero'
 
-const LayoutWrapper = ({isHome, children }) => {
+const LayoutWrapper = ({ isHome, children }) => {
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
