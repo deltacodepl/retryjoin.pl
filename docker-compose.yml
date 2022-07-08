@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    container_name: retryjoin
+    build: .
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      # ignore local node_modules, use container
+      - /app/node_modules
+    ports:
+      - 3000:3000
+      - 9229:9229
+    command: npm run dev

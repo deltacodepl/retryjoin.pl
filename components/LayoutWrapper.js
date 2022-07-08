@@ -6,8 +6,9 @@ import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import Hero from './Hero'
 
-const LayoutWrapper = ({ children }) => {
+const LayoutWrapper = ({isHome, children }) => {
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
@@ -44,6 +45,7 @@ const LayoutWrapper = ({ children }) => {
             <MobileNav />
           </div>
         </header>
+        {isHome ? <Hero /> : null}
         <main className="mb-auto">{children}</main>
         <Footer />
       </div>
