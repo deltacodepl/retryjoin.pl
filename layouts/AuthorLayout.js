@@ -19,8 +19,8 @@ export default function AuthorLayout({ children, frontMatter }) {
             <Image
               src={foto}
               alt="foto"
-              width="192px"
-              height="192px"
+              width="120px"
+              height="120px"
               className="h-48 w-48 rounded-full"
             />
             <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">{name}</h3>

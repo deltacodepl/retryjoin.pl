@@ -8,7 +8,7 @@ const Hero = () => {
         <div className="flex flex-col items-center justify-start md:flex-row">
           <Image
             src="/static/images/foto.png"
-            alt="An image about KO"
+            alt="An image KO"
             className="h-32 w-32 rounded-full border-2 border-gray-200 shadow-md"
             width={72}
             height={72}
