@@ -3,13 +3,13 @@ import Link from '@/components/Link'
 
 const Hero = () => {
   return (
-    <section className="grid lg:grid-rows-1 lg:grid-cols-2 items-center justify-between py-8 min-w-screen">
-      <div className="flex flex-col items-start justify-center w-full h-full pr-8 mb-10 xl:mb-0">
-        <div className="flex flex-col md:flex-row justify-start items-center">
+    <section className="min-w-screen grid items-center justify-between py-8 lg:grid-cols-2 lg:grid-rows-1">
+      <div className="mb-10 flex h-full w-full flex-col items-start justify-center pr-8 xl:mb-0">
+        <div className="flex flex-col items-center justify-start md:flex-row">
           <Image
             src="/static/images/foto.png"
             alt="An image about KO"
-            className="border-2 border-gray-200 rounded-full w-32 h-32 shadow-md"
+            className="h-32 w-32 rounded-full border-2 border-gray-200 shadow-md"
             width={72}
             height={72}
             layout="fixed"
@@ -17,25 +17,25 @@ const Hero = () => {
             priority
             loading="eager"
           />
-          <h2 className="ml-2 text-3xl font-extrabold font-display leading-tight sm:text-4xl sm:leading-none md:text-5xl lg:text-3xl xl:text-4xl">
+          <h2 className="font-display ml-2 text-3xl font-extrabold leading-tight sm:text-4xl sm:leading-none md:text-5xl lg:text-3xl xl:text-4xl">
             Krzysztof Olszewski
           </h2>
         </div>
         <p className="mt-2 text-lg ">Playing with technology, linux, clouds, webapps</p>
         <p className="mt-8 text-sm text-gray-400 dark:text-gray-400">
-          Favorite: Proxmox, Hashistack, Kubernetes, Python, FOSS.
+          Favorite: Proxmox, AWS, Kubernetes, Hashistack, Python/Django, <strong>FOSS</strong>.
         </p>
       </div>
-      <div className="py-12 grid grid-cols-1 gap-8 grid-rows-3">
-        <div className="grid gap-8 items-start my-2">
-          <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-amber-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+      <div className="grid grid-cols-1 grid-rows-3 gap-8 py-12">
+        <div className="my-2 grid items-start gap-8">
+          <div className="group relative">
+            <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
             <Link href="/">
-              <a className="relative px-7 py-4 bg-white dark:bg-black rounded-lg leading-none flex items-center divide-x divide-gray-600">
+              <a className="relative flex items-center divide-x divide-gray-600 rounded-lg bg-white px-7 py-4 leading-none dark:bg-black">
                 <span className="flex items-center space-x-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-green-600 -rotate-6"
+                    className="h-6 w-6 -rotate-6 text-green-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -49,22 +49,22 @@ const Hero = () => {
                   </svg>
                   <span className="pr-6 text-gray-900 dark:text-gray-100">Cloud Projects</span>
                 </span>
-                <span className="pl-6 text-amber-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition duration-200">
+                <span className="pl-6 text-amber-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
                   Coming soon &rarr;
                 </span>
               </a>
             </Link>
           </div>
         </div>
-        <div className="grid gap-8 items-start my-2">
-          <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+        <div className="my-2 grid items-start gap-8">
+          <div className="group relative">
+            <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-pink-600 to-purple-600 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
             <Link href="/blog">
-              <a className="relative px-7 py-4 bg-white dark:bg-black rounded-lg leading-none flex items-center divide-x divide-gray-600">
+              <a className="relative flex items-center divide-x divide-gray-600 rounded-lg bg-white px-7 py-4 leading-none dark:bg-black">
                 <span className="flex items-center space-x-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-pink-600 -rotate-6"
+                    className="h-6 w-6 -rotate-6 text-pink-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -78,22 +78,22 @@ const Hero = () => {
                   </svg>
                   <span className="pr-6 text-gray-900 dark:text-gray-100">Technical Notes</span>
                 </span>
-                <span className="pl-6 text-indigo-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition duration-200">
+                <span className="pl-6 text-indigo-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
                   Blog &rarr;
                 </span>
               </a>
             </Link>
           </div>
         </div>
-        <div className="grid gap-8 items-start my-2">
-          <div className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-fuchsia-600 to-primary-600  rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+        <div className="my-2 grid items-start gap-8">
+          <div className="group relative">
+            <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r  from-fuchsia-600 to-primary-600 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
             <Link href="/foss">
-              <a className="relative px-7 py-4 bg-white dark:bg-black rounded-lg leading-none flex items-center divide-x divide-gray-600">
+              <a className="relative flex items-center divide-x divide-gray-600 rounded-lg bg-white px-7 py-4 leading-none dark:bg-black">
                 <span className="flex items-center space-x-5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-fuchsia-600 -rotate-6"
+                    className="h-6 w-6 -rotate-6 text-fuchsia-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -109,7 +109,7 @@ const Hero = () => {
                   </svg>
                   <span className="pr-6 text-gray-900 dark:text-gray-100">Open Sorce R&D</span>
                 </span>
-                <span className="pl-6 text-primary-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition duration-200">
+                <span className="pl-6 text-primary-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
                   FOSS, that I find interesting &rarr;
                 </span>
               </a>
