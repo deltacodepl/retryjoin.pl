@@ -17,4 +17,12 @@ I have used this setup successfully on a couple e-commerce pages.
 
 ### Project's Structure
 
-The core of serverless application
+The core of serverless application is serverless.yaml
+
+to create sls project from scratch run:
+
+```bash
+sls create --template aws-python3
+sls plugin install --name serverless-dotenv-plugin
+sls plugin install --name serverless-python-requirements
+```

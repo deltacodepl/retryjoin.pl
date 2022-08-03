@@ -23,7 +23,7 @@ const Hero = () => {
         </div>
         <p className="mt-2 text-lg ">Playing with technology, linux, clouds, webapps</p>
         <p className="mt-8 text-sm text-gray-400 dark:text-gray-400">
-          Favorite: Proxmox, AWS, Kubernetes, Hashistack, Python/Django, <strong>FOSS</strong>.
+          Favorite: Proxmox, Kubernetes, Hashistack, Python/Django, AWS/OCI, <strong>FOSS</strong>.
         </p>
       </div>
       <div className="grid grid-cols-1 grid-rows-3 gap-8 py-12">
