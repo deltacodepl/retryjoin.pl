@@ -13,7 +13,11 @@ I would like to present a very simple demo, how to use AWS SES and lambda servic
 
 ![diagram/diagrams_image.png](https://github.com/deltacodepl/aws-contact-form/blob/main/diagram/diagrams_image.png?raw=true)
 
+Github repo: https://github.com/deltacodepl/aws-contact-form
+
 I have used this setup successfully on a couple e-commerce pages, so it's quite handy :).
+
+Project consist of two parts, the static content within s3 website bucket and serverless application.
 
 The point where everything starts it's a simple static **HTML form**, where we can gather some data like
 **sender name, email, and the message**, from our client, using some vanilla javascript:
@@ -146,3 +150,8 @@ endpoint: POST - https://2t9avuoyw0.execute-api.eu-central-1.amazonaws.com/conta
 functions:
   contact: aws-ses-contact-form-dev-contact (11 MB)
 ```
+
+after visiting `http://<bucket_name>.s3-website-us-east-1.amazonaws.com/`
+we can test our small setup
+
+<Image alt="contact-form" src="/static/images/basic_tailwind_starter.png" width={400} height={530} />
