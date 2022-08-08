@@ -13,7 +13,6 @@ import LayoutWrapper from '@/components/LayoutWrapper'
 import { ClientReload } from '@/components/ClientReload'
 import { useRouter } from 'next/router'
 
-
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isSocket = process.env.SOCKET
 
@@ -26,7 +25,8 @@ export default function App({ Component, pageProps }) {
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
-      <LayoutWrapper isHome={pathname === '/' || pathname === '/about'}>
+      {/* || pathname === '/about' */}
+      <LayoutWrapper isHome={pathname === '/'}>
         <Component {...pageProps} />
       </LayoutWrapper>
     </ThemeProvider>
