@@ -11,7 +11,7 @@ const siteMetadata = {
   image: '/static/images/foto.png',
   socialBanner: '/static/images/twitter-card.png',
   email: 'hello@retryjoin.pl',
-  github: 'https://github.com',
+  github: 'https://github.com/deltacodepl',
   twitter: 'https://twitter.com/Twitter',
   facebook: 'https://facebook.com',
   youtube: 'https://youtube.com',

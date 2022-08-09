@@ -1,11 +1,15 @@
 const projectsData = [
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'Saleor',
+    description: `An open-source, GraphQL-first e-commerce platform delivering ultra-fast, dynamic and personalized shopping experiences.`,
+    imgSrc: '/static/images/saleor.png',
+    href: 'https://github.com/saleor/saleor',
+  },
+  {
+    title: 'Tactical RMM',
+    description: `Tactical RMM is a remote monitoring & management tool, built with Django and Vue.`,
+    imgSrc: '/static/images/rmm.png',
+    href: 'https://github.com/amidaware/tacticalrmm',
   },
 ]
 
