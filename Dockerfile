@@ -7,6 +7,7 @@ RUN npm install -g npm@8.13.2
 
 WORKDIR /app
 COPY package.json package-lock.json* ./
+RUN npm install
 RUN npm ci && npm cache clean --force
 RUN npm install && \
 npm install express --save-dev
