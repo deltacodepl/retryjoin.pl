@@ -14,6 +14,8 @@ Basically, it's an open-source rule engine, where you can write policy definitio
 
 ![]()
 
+<Image src="/static/images/ovh-cloud.png" width={350} height={400} />
+
 ### **Key Features**:
 
 1.  Gives a possibility to check on company's compliance requirements.
@@ -55,4 +57,10 @@ policies:
         principal_id_tag: principal-id
 ```
 
-we have used here RunInstances event from CloudTrail with company of JMESPath id responseElements.instancesSet.items[].instanceId, filter by absent tag, and principalId from logs as well which let us easly identify owner of the EC2 instance.
+We have used here RunInstances event from CloudTrail with company of JMESPath id
+
+> responseElements.instancesSet.items[].instanceId
+
+filter by absent tag, and principalId from logs as well which let us easly identify owner of the EC2 instance.
+
+You can play with bunch of different examples from theirs docs https://cloudcustodian.io/docs/aws/examples/index.html .
