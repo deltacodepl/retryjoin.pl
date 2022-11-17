@@ -1,118 +1,58 @@
 ---
 title: Cloud Custodian - Cloud Governance Tool
-date: '2022-11-0'
+date: '2022-10-01'
 tags: ['AWS', 'Lambda', 'Python', 'Governance']
 draft: true
 summary:
 images: []
 ---
 
-A Cloud Custodian (https://cloudcustodian.io/) is an open-source from CapitalOne written in python language and comprises many tools and scripts. It is a rule engine where you can write policy definitions in YAML. This enables an organization to manage their public cloud resources by writing policies for **cost savings, explore tagging, compliance, security, operations related concerns, and resource inventory**.
+Currently I work with some kind an utility tool to keep a whole AWS infrastracture in tight, good shape, to easy the inventarisation, security and finops.
 
-> Open Source, Python, Serverless, Agentless, Policy-as-a-Code, Real-Time Guard Rail, Visibility, Powerful Cloud Security Management Tool
+It's the **Cloud Custodian** (https://cloudcustodian.io/) from CapitalOne.
+Basically, it's an open-source rule engine, where you can write policy definitions in YAML. This gives us a possibility to manage public cloud resources by writing policies for **cost savings, explore tagging, compliance, security and operations related concerns**, which I find quite useful.
 
 ![]()
 
 ### **Key Features**:
 
-1.  Enables you to check on your compliance requirements.
+1.  Gives a possibility to check on company's compliance requirements.
 2.  Real-Time Guard rails, that take action on the resources to do auto-remediation.
-3.  **Best in class to filter on certain values and define actions to be taken at certain time intervals. For example- mark now, notify the user, and delete after 1 hour, and then notify again. Hence, allows using a wide variety of combinations to meet your use cases.**
-4.  **Allows you to define if action needs to be taken on an existing or newly created resources.**
-5.  Supports auto tagging resource with user name.
+3.  Can filter on certain values of resources and define actions to be taken at certain time intervals or in realtime leveraging CloudTrail events.
+4.  Can act on an existing or newly created resources.
+5.  Supports auto tagging resource with user name who created it.
 6.  Produces the output which can be ingested into a Security Information and Event Management solution (SIEM).
 
 ### Simple test run
 
-```yaml
-policies:
-  - name: find-all-elb
-    resource: aws.app-elb
-```
+I have prepared a basic terraform script that spines up a VM with custodian installed within python venv environment, so you can easy test it.
+https://github.com/deltacodepl/terraform-custodian-playground
 
-output:
-
-```json
-[
-  {
-    "LoadBalancerArn": "arn:aws:elasticloadbalancing:eu-central-1:615263381294:loadbalancer/app/alb1/f7bbf4eae13104fc",
-    "DNSName": "alb1-1664155659.eu-central-1.elb.amazonaws.com",
-    "CanonicalHostedZoneId": "Z215JYRZR1TBD5",
-    "CreatedTime": "2022-10-26T08:07:06.070000+00:00",
-    "LoadBalancerName": "alb1",
-    "Scheme": "internet-facing",
-    "VpcId": "vpc-062e68042f3475bd5",
-    "State": {
-      "Code": "active"
-    },
-    "Type": "application",
-    "AvailabilityZones": [
-      {
-        "ZoneName": "eu-central-1a",
-        "SubnetId": "subnet-0ded831b97da8f247",
-        "LoadBalancerAddresses": []
-      },
-      {
-        "ZoneName": "eu-central-1b",
-        "SubnetId": "subnet-0e31d45db6c813bf0",
-        "LoadBalancerAddresses": []
-      }
-    ],
-    "SecurityGroups": ["sg-041094637c498e015"],
-    "IpAddressType": "ipv4",
-    "Tags": [
-      {
-        "Key": "env",
-        "Value": "dev"
-      },
-      {
-        "Key": "service",
-        "Value": "contact-form"
-      }
-    ]
-  }
-]
-```
-
-Examples
-
-### EBS unattached volumes
+Lets say we want to check on every time when someones launches en EC2 instance, if EC2 has owner tag, if not we will tag it automatically with the id of Api caller.
 
 ```yaml
-
 policies:
-
-	- name: ebs-mark-unattached-deletion
-
-	resource: ebs
-
-	comments: |
-
-	Mark any unattached EBS volumes for deletion in 30 days.
-
-	Volumes set to not delete on instance termination do have
-
-	valid use cases as data drives, but 99% of the time they
-
-	appear to be just garbage creation.
-
-	filters:
-
-	- Attachments: []
-
-	- "tag:maid_status": absent
-
-	actions:
-
-	- type: mark-for-op
-
-	op: delete
-
-	days: 30
+  - name: ec2-auto-tag
+    resource: aws.ec2
+    description: |
+      Find ec2 that has not been tagged with mandatory tag on-creation. 
+      Tag ec2 with the user who created it.
+    mode:
+      type: cloudtrail
+      role: default-custodian-role
+      events:
+        - source: ec2.amazonaws.com
+          event: RunInstances
+          ids: 'responseElements.instancesSet.items[].instanceId'
+      execution-options:
+        output_dir: s3://custodian-logs/
+      runtime: python3.8
+    filters:
+      - 'tag:created-by': absent
+    actions:
+      - type: auto-tag-user
+        tag: created-by
+        principal_id_tag: principal-id
 ```
 
-![[Pasted image 20221026180228.png]]
-
-### AWS Tagging Best Practices
-
-![[Pasted image 20221026182244.png]]
+we have used here RunInstances event from CloudTrail with company of JMESPath id responseElements.instancesSet.items[].instanceId, filter by absent tag, and principalId from logs as well which let us easly identify owner of the EC2 instance.
