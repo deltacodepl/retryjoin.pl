@@ -26,7 +26,7 @@ Basically, it's an open-source rule engine, where you can write policy definitio
 ### Simple test run
 
 I have prepared a basic terraform script that spines up a VM with custodian installed within python venv environment, so you can easy test it.
-https://github.com/deltacodepl/terraform-custodian-playground
+https://github.com/deltacodepl/terraform-aws-custodian.git
 
 Lets say we want to check on every time when someones launches en EC2 instance, if EC2 has owner tag, if not we will tag it automatically with the id of Api caller.
 
