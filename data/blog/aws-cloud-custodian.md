@@ -2,23 +2,21 @@
 title: Cloud Custodian - Cloud Governance Tool
 date: '2022-10-01'
 tags: ['AWS', 'Lambda', 'Python', 'Governance']
-draft: true
+draft: false
 summary:
 images: []
 ---
 
-Currently I work with some kind an utility tool to keep a whole AWS infrastracture in tight, good shape, to easy the inventarisation, security and finops.
+Currently I work with some kind an utility - cloud native policy tool, to keep a whole AWS infrastracture in tight, good shape, to easy the inventarisation, security and even finops.
 
 It's the **Cloud Custodian** (https://cloudcustodian.io/) from CapitalOne.
 Basically, it's an open-source rule engine, where you can write policy definitions in YAML. This gives us a possibility to manage public cloud resources by writing policies for **cost savings, explore tagging, compliance, security and operations related concerns**, which I find quite useful.
 
-![]()
-
-<Image src="/static/images/ovh-cloud.png" width={350} height={400} />
+<Image alt="custodian" src="/static/images/custodian.png" width={500} height={350} />
 
 ### **Key Features**:
 
-1.  Gives a possibility to check on company's compliance requirements.
+1.  Can be integrated seamlessly with AWS services like AWS Tower, Hub Security. Gives a possibility to check on company's compliance requirements.
 2.  Real-Time Guard rails, that take action on the resources to do auto-remediation.
 3.  Can filter on certain values of resources and define actions to be taken at certain time intervals or in realtime leveraging CloudTrail events.
 4.  Can act on an existing or newly created resources.
