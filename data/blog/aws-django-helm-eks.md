@@ -7,18 +7,88 @@ summary:
 images: []
 ---
 
-Currently I need to build some small landing page, I will be using django based project template with admin backend, for this project. Lets build infrastructure for this deployment using AWS cloud and their EKS platform.
+Currently I want to build some small landing page, I will be using django based project template with admin backend for this project.
+Lets build infrastructure for our deployment using AWS cloud and their EKS platform.
 
-First we try to build generic cluster for django application using great module **terraform-aws-modules/eks/aws**. Our project will be consist of:
+First we try to build generic cluster for django application using great module **terraform-aws-modules/eks/aws**. Our terraform project will be creating:
 
-1. VPC
+1. VPC with at least 2 az
 
-- Private and public subnets
-- NAT Gateway
+- Private and public subnets for each zone
+- 1 NAT Gateway
 - Internet Gateway
 - Route tables
 
 2. Security Groups
+3. Iam User and Role to configure access to the cluster by aws-auth config map
+4. AWS LB Controller
+5. EKS Cluster
+
+We will start with the VPC, by using module **terraform-aws-modules/vpc/aws**, we can do it within a couple minutes, by just setting up some variables:
+
+```yaml
+  name                 = "${var.app_name}-vpc"
+  cidr                 = var.vpc_cidr
+  azs                  = local.azs
+  private_subnets      = [for k, v in local.azs : cidrsubnet(var.vpc_cidr, 8, k + 10)]
+  public_subnets       = [for k, v in local.azs : cidrsubnet(var.vpc_cidr, 8, k)]
+
+  enable_nat_gateway   = true
+  single_nat_gateway   = true
+  one_nat_gateway_per_az = false
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+```
+
+Our basic networking is ready. Time for IAM:
+
+First lets create policy for admin user with access rights to the cluster:
+
+```json
+policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "eks:DescribeCluster",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+```
+
+Next we are creating a assumable role that will use this policy:
+
+```json
+role_name         = "eks-admin"
+  create_role       = true
+  role_requires_mfa = false
+
+  custom_role_policy_arns = [module.allow_eks_access_iam_policy.arn]
+
+  trusted_role_arns = [
+    "arn:aws:iam::${module.vpc.vpc_owner_id}:root"
+  ]
+```
+
+nad policy that allows us to do this:
+
+```json
+policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "sts:AssumeRole",
+        ]
+        Effect   = "Allow"
+        Resource = module.eks_admins_iam_role.iam_role_arn
+      },
+    ]
+  })
+```
 
 It's the **Cloud Custodian** (https://cloudcustodian.io/) from CapitalOne.
 Basically, it's an open-source rule engine, where you can write policy definitions in YAML. This gives us a possibility to manage public cloud resources by writing policies for **cost savings, explore tagging, compliance, security and operations related concerns**, which I find quite useful.
