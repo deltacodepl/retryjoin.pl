@@ -73,7 +73,7 @@ role_name         = "eks-admin"
   ]
 ```
 
-nad policy that allows us to do this:
+and iam group for our admin users, with policy that allows us to do this:
 
 ```json
 policy = jsonencode({
@@ -88,6 +88,64 @@ policy = jsonencode({
       },
     ]
   })
+```
+
+Ok, lets setup eks module,
+
+```json
+subnet_ids      = module.vpc.private_subnets
+  vpc_id          = module.vpc.vpc_id
+
+  cluster_endpoint_private_access = true
+  cluster_endpoint_public_access  = true
+
+  eks_managed_node_group_defaults = {
+    disk_size = 30
+  }
+
+  eks_managed_node_groups = {
+    general = {
+      desired_size = 1
+      min_size     = 1
+      max_size     = 2
+
+      labels = {
+        role = "general"
+      }
+
+      instance_types = ["t3.small"]
+      capacity_type  = "ON_DEMAND"
+    }
+
+    spot = {
+      desired_size = 1
+      min_size     = 1
+      max_size     = 2
+
+      labels = {
+        role = "spot"
+      }
+
+      taints = [{
+        key    = "market"
+        value  = "spot"
+        effect = "NO_SCHEDULE"
+      }]
+
+      instance_types = ["t3.micro"]
+      capacity_type  = "SPOT"
+    }
+  }
+
+  manage_aws_auth_configmap = true
+
+  aws_auth_roles = [
+    {
+      rolearn  = module.eks_admins_iam_role.iam_role_arn
+      username = module.eks_admins_iam_role.iam_role_name
+      groups   = ["system:masters"]
+    },
+  ]
 ```
 
 It's the **Cloud Custodian** (https://cloudcustodian.io/) from CapitalOne.
