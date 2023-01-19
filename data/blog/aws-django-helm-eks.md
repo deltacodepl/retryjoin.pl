@@ -7,8 +7,10 @@ summary:
 images: []
 ---
 
-Currently I want to build some small landing page on django with admin baackend and put it in the cloud.
+Currently I want to build some small landing page on django with admin backend and put it in the cloud.
 Lets build infrastructure for our deployment using AWS and their managed kubernetes EKS platform.
+
+<Image alt="eks" src="/static/images/django-eks.drawio.png" width={500} height={350} />
 
 First we try to build generic cluster for django application using great module **terraform-aws-modules/eks/aws**. Our terraform project will be creating:
 
@@ -26,7 +28,7 @@ First we try to build generic cluster for django application using great module 
 
 We will start with the VPC, by using module **terraform-aws-modules/vpc/aws**, we can do it within a couple minutes, by just setting up some variables:
 
-```yaml
+```hcl
   name                 = "${var.app_name}-vpc"
   cidr                 = var.vpc_cidr
   azs                  = local.azs
@@ -102,7 +104,7 @@ policy = jsonencode({
 Ok, lets setup eks module, we put the cluster into our private subnets, because we don't have a direct vpn connection to the vpc, we will also setup public access by using endpoint. For testing purposes we will use also a SPOT instances with our cluster, in real use case we could use it for some interruptible computations for example.
 Setting up **aws_auth_roles** with our assumable role let us get control over the cluster.
 
-```json
+```hcl
   subnet_ids      = module.vpc.private_subnets
   vpc_id          = module.vpc.vpc_id
 
@@ -158,4 +160,28 @@ Setting up **aws_auth_roles** with our assumable role let us get control over th
   ]
 ```
 
-<Image alt="custodian" src="/static/images/custodian.png" width={500} height={350} />
+When we run `terraform apply`, and everything has gone rigth, we are ready to get access to the cluster and install some test manifest.
+To run as user we have created ealier, we need to configure local profile for ekadmin user `aws configure --profile ekadmin` and
+add role arn to **~/.aws/config** file:
+
+```bash
+[profile ekadmin]
+role_arn = arn:aws:iam::${ACCOUNT_ID}:role/eks-admin
+source_profile = ekadmin
+region = eu-central-1
+output = json
+```
+
+By running
+`aws sts get-caller-identity --profile ekadmin` we can check if we have proper access to the AWS
+
+To connect to the cluster we update our context first, and then deploy simple nginx service:
+
+```bash
+aws eks update-kubeconfig --name django-helm-eks-terraform --profile ekadmin
+kubectl apply -f  ../k8s/nginx.yaml
+```
+
+<Image alt="EKS" src="/static/images/eks.png" width={800} height={235} />
+
+By taking DNS of loadbalancer created by kubernetes addon we have installed, we can get access to our newly deployed service:
