@@ -2,7 +2,7 @@
 title: AWS EKS for django application
 date: '2022-12-20'
 tags: ['AWS', 'Python', 'Kubernetes']
-draft: true
+draft: false
 summary:
 images: []
 ---
@@ -185,3 +185,9 @@ kubectl apply -f  ../k8s/nginx.yaml
 <Image alt="EKS" src="/static/images/eks.png" width={800} height={235} />
 
 By taking DNS of loadbalancer created by kubernetes addon we have installed, we can get access to our newly deployed service:
+
+<Image alt="EKS" src="/static/images/s24ovh.png" width={1017} height={53} />
+
+<Image alt="EKS" src="/static/images/s24eu.png" width={900} height={244} />
+
+If we wanted to deploy our web app under root domain, we should use
