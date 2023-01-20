@@ -10,7 +10,7 @@ images: []
 Currently I want to build some small landing page on django with admin backend and put it in the cloud.
 Lets build infrastructure for our deployment using AWS and their managed kubernetes EKS platform.
 
-<Image alt="eks" src="/static/images/django-eks.drawio.png" width={500} height={350} />
+<Image alt="eks" src="/static/images/django-eks.drawio.png" width={800} height={721} />
 
 First we try to build generic cluster for django application using great module **terraform-aws-modules/eks/aws**. Our terraform project will be creating:
 
@@ -190,4 +190,5 @@ By taking DNS of loadbalancer created by kubernetes addon we have installed, we 
 
 <Image alt="EKS" src="/static/images/s24eu.png" width={900} height={244} />
 
-If we wanted to deploy our web app under root domain, we should use
+If we wanted to deploy our web app under root domain(apex zone), we should use ALIAS with Route53
+https://aws.amazon.com/premiumsupport/knowledge-center/route-53-create-alias-records/
