@@ -1,7 +1,7 @@
 const siteMetadata = {
   title: 'Next.js Tech Blog',
   author: 'Krzysztof Olszewski',
-  headerTitle: 'TailwindBlog',
+  headerTitle: 'retryjoin.pl',
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light

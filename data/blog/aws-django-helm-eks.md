@@ -1,13 +1,13 @@
 ---
-title: AWS EKS for django application
+title: AWS EKS for django application (part 1)
 date: '2022-12-20'
-tags: ['AWS', 'Python', 'Kubernetes']
+tags: ['AWS', 'Terraform', 'Kubernetes']
 draft: false
 summary:
 images: []
 ---
 
-Currently I want to build some small landing page on django with admin backend and put it in the cloud.
+Currently I want to build some simple landing page on django with admin backend and put it in the cloud.
 Lets build infrastructure for our deployment using AWS and their managed kubernetes EKS platform.
 
 <Image alt="eks" src="/static/images/django-eks.drawio.png" width={800} height={721} />
@@ -184,7 +184,7 @@ kubectl apply -f  ../k8s/nginx.yaml
 
 <Image alt="EKS" src="/static/images/eks.png" width={800} height={235} />
 
-By taking DNS of loadbalancer created by kubernetes addon we have installed, we can get access to our newly deployed service:
+By using DNS of loadbalancer created by kubernetes addon we have installed, we can get access to our newly deployed service:
 
 <Image alt="EKS" src="/static/images/s24ovh.png" width={1017} height={53} />
 

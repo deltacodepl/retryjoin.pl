@@ -23,14 +23,14 @@ const Hero = () => {
         </div>
         <p className="mt-2 text-lg ">Playing with technology, linux, clouds, webapps</p>
         <p className="mt-8 text-sm text-gray-400 dark:text-gray-400">
-          Favorite: Proxmox, Kubernetes, Hashistack, Python/Django, AWS/OCI, <strong>FOSS</strong>.
+          Favorite: Proxmox, Kubernetes, Hashistack, AWS, Python/Django, <strong>FOSS</strong>.
         </p>
       </div>
       <div className="grid grid-cols-1 grid-rows-3 gap-8 py-12">
         <div className="my-2 grid items-start gap-8">
           <div className="group relative">
             <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
-            <Link href="/">
+            <Link href="/projects">
               <a className="relative flex items-center divide-x divide-gray-600 rounded-lg bg-white px-7 py-4 leading-none dark:bg-black">
                 <span className="flex items-center space-x-5">
                   <svg
@@ -50,7 +50,7 @@ const Hero = () => {
                   <span className="pr-6 text-gray-900 dark:text-gray-100">Cloud Projects</span>
                 </span>
                 <span className="pl-6 text-amber-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
-                  Coming soon &rarr;
+                  WIP &rarr;
                 </span>
               </a>
             </Link>

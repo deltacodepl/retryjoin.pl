@@ -1,7 +1,7 @@
 ---
-title: AWS EKS for django application
-date: '2022-12-20'
-tags: ['AWS', 'Python', 'Kubernetes']
+title: AWS EKS for django application (part 2)
+date: '2022-01-20'
+tags: ['AWS', 'Helm', 'Kubernetes']
 draft: true
 summary:
 images: []

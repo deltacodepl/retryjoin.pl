@@ -1,16 +1,16 @@
 const projectsData = [
   {
-    title: 'Saleor',
-    description: `An open-source, GraphQL-first e-commerce platform delivering ultra-fast, dynamic and personalized shopping experiences.`,
-    imgSrc: '/static/images/saleor.png',
-    href: 'https://github.com/saleor/saleor',
+    title: 'Django on AWS',
+    description: `Full AWS infrastructure Terraform & Helm project for django with DRF&NextJS platform.`,
+    imgSrc: '/static/images/django-drf-nextjs.png',
+    href: 'https://github.com/deltacodepl/django-helm-eks-terraform',
   },
-  {
-    title: 'Tactical RMM',
-    description: `Tactical RMM is a remote monitoring & management tool, built with Django and Vue.`,
-    imgSrc: '/static/images/rmm.png',
-    href: 'https://github.com/amidaware/tacticalrmm',
-  },
+  // {
+  //   title: 'Saleor on AWS',
+  //   description: `Full AWS infrastructure Terraform & Helm project for e-commerce platform.`,
+  //   imgSrc: '/static/images/saleor.png',
+  //   href: 'https://github.com/deltacodepl/django-helm-eks-terraform',
+  // },
 ]
 
 export default projectsData
