@@ -5,6 +5,12 @@ const projectsData = [
     imgSrc: '/static/images/django-drf-nextjs.png',
     href: 'https://github.com/deltacodepl/django-helm-eks-terraform',
   },
+  {
+    title: 'Flagsmith on ECS',
+    description: `Full AWS ECS infrastructure Terraform for Flagsmith.`,
+    imgSrc: '/static/images/django-drf-nextjs.png',
+    href: 'https://github.com/deltacodepl/flagsmith-aws-terraform',
+  },
   // {
   //   title: 'Saleor on AWS',
   //   description: `Full AWS infrastructure Terraform & Helm project for e-commerce platform.`,

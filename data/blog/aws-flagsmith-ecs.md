@@ -7,7 +7,8 @@ summary:
 images: []
 ---
 
-Currently I need to rebuild some small online webshop with candles, I will be using beloved Python based saleor engine for this project. Lets build infrastructure for this deployment using AWS cloud and their EKS platform.
+Recently I need to rebuild some small online webshop with candles, I will be using Python based saleor engine for this project.
+Lets build infrastructure for this deployment using AWS cloud and their EKS platform.
 
 First we try to build generic cluster for django application.
 
