@@ -7,10 +7,9 @@ summary:
 images: []
 ---
 
-Recently I need to rebuild some small online webshop with candles, I will be using Python based saleor engine for this project.
-Lets build infrastructure for this deployment using AWS cloud and their EKS platform.
-
-First we try to build generic cluster for django application.
+Recently I came upon Feature Flag and Remote Config service named Flagsmith.
+To speed up spin up the project, we will use terraform script to run Flagsmith in the AWS.
+Infrastructure for this deployment on ECS platform looks like this:
 
 It's the **Cloud Custodian** (https://cloudcustodian.io/) from CapitalOne.
 Basically, it's an open-source rule engine, where you can write policy definitions in YAML. This gives us a possibility to manage public cloud resources by writing policies for **cost savings, explore tagging, compliance, security and operations related concerns**, which I find quite useful.
