@@ -7,6 +7,9 @@ summary:
 images: []
 ---
 
+helm repo add django https://deltacodepl.github.io/django-helm-chart
+helm install django django/django
+
 Currently I need to rebuild some small online webshop with candles, I will be using Python based saleor engine for this project.
 Lets build infrastructure for this deployment using AWS cloud and their EKS platform.
 
